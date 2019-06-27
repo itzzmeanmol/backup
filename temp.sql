@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 21, 2019 at 11:43 AM
+-- Generation Time: Jun 27, 2019 at 12:38 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -26,6 +26,20 @@ CREATE TABLE `coords` (
   `topp` int(11) DEFAULT NULL,
   `leftt` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL,
+  `file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `uploaded_on` datetime NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
+  `uid` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -123,6 +137,13 @@ ALTER TABLE `coords`
   ADD PRIMARY KEY (`id`,`eid`);
 
 --
+-- Indexes for table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uid` (`uid`,`file_name`);
+
+--
 -- Indexes for table `person`
 --
 ALTER TABLE `person`
@@ -163,6 +184,12 @@ ALTER TABLE `workperformance`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tagslist`

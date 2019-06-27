@@ -44,8 +44,11 @@ while ($row = mysqli_fetch_array($result)) { ?>
             <?php } ?>
           </ul>
         </p>
-
+        <a href="display.php?id=<?= $_SESSION['username'] ?>"><h6 style="color:white">Gallary&nbsp;<i class="far fa-images"></i></h6></a>
       </div>
+      
+        
+      
     </div>
     <br>
     <br>
@@ -231,7 +234,7 @@ while ($row = mysqli_fetch_array($result)) { ?>
             });
             $("#draggable3").css({
               left: res.leftt2 - 150,
-              top: res.topp2 - 967+$('.skills').height()
+              top: res.topp2 - 967
 
 
             });

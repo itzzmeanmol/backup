@@ -25,10 +25,10 @@ while ($row = mysqli_fetch_array($result)) { ?>
           <div id="template1-header">
 
                <img class='rounded-circle' src="<?= $directory . $row['image'] ?>" alt='Card image' id='image_field' style='width:200px;
-                                                            height:200px;
-                                                            margin-left: 50px;
-                                                            margin-top:80px;
-                                                            border: 5px solid white; '>
+                                                                           height:200px;
+                                                                           margin-left: 50px;
+                                                                           margin-top:80px;
+                                                                           border: 5px solid white; '>
                <div style="display:inline-block; margin-left: 35%; text-align:center; position:sticky; margin-top:20px">
                     <p id='fname_field' style=" color:white; font-size: 40px; display: inline;"><?= $row['fname'] ?></p>
                     <p id='lname_field' style=" color:white; font-size: 40px; display: inline;"><?= $row['sname'] ?></p>
@@ -50,10 +50,10 @@ while ($row = mysqli_fetch_array($result)) { ?>
           <br>
           <br>
           <p style='margin: 0 auto; color:gray; font-size:20px; font-family: Kaushan Script, cursive;
-                                                            color:gray; margin-top:0px; width: 80%;
-                                                            margin: 1em auto 1em auto;
-                                                            text-align: center;
-                                                            font-size: 0.8em;' id='text_field'><?= $row['about'] ?></p>
+                                                                           color:gray; margin-top:0px; width: 80%;
+                                                                           margin: 1em auto 1em auto;
+                                                                           text-align: center;
+                                                                           font-size: 0.8em;' id='text_field'><?= $row['about'] ?></p>
           <hr>
           <div class="row">
                <div class="card work-experience">
@@ -241,7 +241,7 @@ while ($row = mysqli_fetch_array($result)) { ?>
                          </fieldset>
                          <br>
                          <!-- <input type="radio" value="1" name="template" style="margin-left: 15px;" class="file" checked>&nbsp; Template 1 &nbsp; &nbsp;
-                         <input type="radio" value="2" name="template" class="file">&nbsp; Template 2 -->
+                                                       <input type="radio" value="2" name="template" class="file">&nbsp; Template 2 -->
                          <br>
                          <br>
 
@@ -250,7 +250,7 @@ while ($row = mysqli_fetch_array($result)) { ?>
                          <!-- <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" /> -->
                     </form>
 
-                    
+
                     <script type="text/javascript">
                          var i = 1;
                          $('#add').click(function() {
@@ -284,9 +284,16 @@ while ($row = mysqli_fetch_array($result)) { ?>
                          });
                     </script>
 
+                    <form action="func.php" method="post" enctype="multipart/form-data">
+                         <h6 style="color:white;">Select Images for your Gallery</h6>
+                         <input type="file" name="files[]" class = "file form-control" multiple>
+                         <br>
+                         <input type="submit" name="submit" value="UPLOAD" class="btn btn-danger">
+                    </form>
+                    <div><a href="edit_gallery.php?id=<?= $_SESSION['username'] ?>">Edit Gallery</a></div>
+                    
 
-
-                    <form method="POST" action="template1.php?id=<?=$_SESSION['username'] ?>">
+                    <form method="POST" action="template1.php?id=<?= $_SESSION['username'] ?>">
                          <button type="submit" class="form-control btn btn-info" name="preview">Preview</button>
                     </form>
                </div>

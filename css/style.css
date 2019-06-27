@@ -33,6 +33,7 @@ a:hover {
     height: 200px;
     /* background-color: red; */
     display: inline-block;
+    position: relative;
 }
 
 .template2 {
