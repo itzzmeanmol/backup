@@ -115,6 +115,35 @@ while ($row = mysqli_fetch_array($result)) { ?>
         </div>
       </div>
     </div>
+    <div class="row">
+         <?php
+         // Get images from the database
+         $query = $db->query("SELECT * FROM images where uid = '$id' ORDER BY id DESC"); ?>
+
+
+
+
+
+         <?php
+         include_once 'dbConfig.php';
+         if ($query->num_rows > 0) {
+            while ($row = $query->fetch_assoc()) {
+               $imageURL = 'uploads/' . $row["file_name"];
+               ?>
+
+               <div class="col-lg-4 col-sm-6">
+                  <div>
+                     <!-- <div class="image" style="float:left"> -->
+
+                     <img src="<?php echo $imageURL; ?>" alt="" class="img-thumbnail"/>
+
+                  </div>
+                  <!-- </div> -->
+               </div>
+
+            <?php }
+      } ?>
+      </div>
   </div>
 
 

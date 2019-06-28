@@ -29,7 +29,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     mysqli_query($db, $qry);
     $query = "UPDATE person SET template='$btn' where id=$id";
     mysqli_query($db, $query);
-    header('location: form-student.php?id=' . $_SESSION['username']);
+    header('location: template2.php?id=' . $_SESSION['username']);
   }
 ?>
 

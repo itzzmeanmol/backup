@@ -18,7 +18,27 @@ include("header.php");
 $db = mysqli_connect("localhost:8889", "root", "123", "temp") or die("could not connect to server");
 $id = $_SESSION['id'];
 $result = mysqli_query($db, "SELECT * FROM person WHERE id = $id");
-$directory = date("Y") . '/' . date("m") . '/' . date("d") . '/';
+// $directory = date("Y") . '/' . date("m") . '/' . date("d") . '/';
+function mysql_get_var($query,$y=0){
+     $db = mysqli_connect("localhost:8889", "root", "123", "temp") or die("could not connect to server");
+     $res = mysqli_query($db,$query);
+     $row = mysqli_fetch_array($res);
+     mysqli_free_result($res);
+     $rec = $row[$y];
+     return $rec;
+  }
+  
+  
+  $mysql_datetime = mysql_get_var("SELECT time_updated FROM person WHERE id = 1");
+  list($date, $time) = explode(' ', $mysql_datetime);
+  list($year, $month, $day) = explode('-', $date);
+  list($hr, $min, $sec) = explode(':', $time);
+  $sec = (int)substr($sec, 0, 2);
+
+$directory = $year . '/' . $month . '/' . $day . '/';
+
+
+
 while ($row = mysqli_fetch_array($result)) { ?>
 
      <div class="main">
