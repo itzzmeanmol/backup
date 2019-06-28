@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 27, 2019 at 12:38 PM
+-- Generation Time: Jun 28, 2019 at 05:38 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -58,8 +58,21 @@ CREATE TABLE `person` (
   `template` int(11) DEFAULT NULL,
   `color` varchar(255) NOT NULL DEFAULT 'green',
   `welcome` varchar(255) DEFAULT 'yes',
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Triggers `person`
+--
+DELIMITER $$
+CREATE TRIGGER `person` BEFORE UPDATE ON `person` FOR EACH ROW begin
+    if old.image <> new.image then
+        set new.time_updated = now();
+    end if; 
+end
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -142,12 +155,6 @@ ALTER TABLE `coords`
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `uid` (`uid`,`file_name`);
-
---
--- Indexes for table `person`
---
-ALTER TABLE `person`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `social`
